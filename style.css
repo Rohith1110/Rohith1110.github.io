@@ -28,21 +28,25 @@ nav a {
     text-decoration: none;
 }
 
-.scroll-section {
+.category {
     margin: 20px;
-    overflow-x: hidden;
-    white-space: nowrap;
 }
 
-.scroll-wrapper {
+h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.scroll-container {
     display: flex;
     gap: 20px;
-    overflow-x: scroll;
+    overflow-x: auto;
+    white-space: nowrap;
     scrollbar-width: none;
     -ms-overflow-style: none;
 }
 
-.scroll-wrapper::-webkit-scrollbar {
+.scroll-container::-webkit-scrollbar {
     display: none;
 }
 
@@ -53,6 +57,7 @@ nav a {
     border-radius: 8px;
     text-align: center;
     cursor: pointer;
+    flex: 0 0 auto;
 }
 
 .card img {
