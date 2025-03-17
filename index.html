@@ -7,86 +7,6 @@
     <title>RohithFlix</title>
     <link rel="stylesheet" href="styles.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <style>
-        body {
-            background-color: #141414;
-            color: white;
-            font-family: Arial, sans-serif;
-        }
-        .header {
-            background-color: black;
-            color: red;
-            display: flex;
-            justify-content: space-between;
-            padding: 15px 50px;
-            align-items: center;
-        }
-        .logo {
-            font-size: 24px;
-            font-weight: bold;
-            color: red;
-        }
-        nav ul {
-            list-style: none;
-            display: flex;
-            gap: 20px;
-        }
-        nav ul li a {
-            color: white;
-            text-decoration: none;
-            font-weight: bold;
-        }
-        .carousel-section {
-            margin: 40px 0;
-        }
-        .carousel-section h2 {
-            color: white;
-            font-size: 24px;
-            margin-bottom: 10px;
-            padding-left: 20px;
-        }
-        .carousel {
-            display: flex;
-            overflow-x: scroll;
-            padding: 10px;
-        }
-        .slide {
-            min-width: 250px;
-            margin: 10px;
-            background: #222;
-            padding: 10px;
-            border-radius: 8px;
-            text-align: center;
-        }
-        .slide img {
-            width: 100%;
-            border-radius: 8px;
-        }
-        .popup {
-            display: none;
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: black;
-            color: white;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0px 0px 10px red;
-        }
-        .popup-content {
-            text-align: center;
-        }
-        .close {
-            color: red;
-            float: right;
-            font-size: 28px;
-            cursor: pointer;
-        }
-    </style>
 </head>
 
 <body>
@@ -103,61 +23,108 @@
             </ul>
         </nav>
     </header>
-    
-    <section id="education" class="carousel-section">
-        <h2>Your Education</h2>
-        <div class="carousel">
-            <div class="slide" onclick="showPopup('UIC', 'Master of Science in Computer Science | CGPA: 4.0')">
-                <img src="assets/uic.png" alt="UIC">
-                <p>University of Illinois, Chicago</p>
+
+    <main>
+        <!-- Education Section -->
+        <section class="category">
+            <h2>Your Education</h2>
+            <div class="scroll-container">
+                <div class="card" onclick="showPopup('UIC', 'Master of Science in Computer Science', 'Studied AI, cloud computing, and full-stack development. CGPA: 4.0')">
+                    <img src="assets/uic.png" alt="UIC">
+                    <p>University of Illinois, Chicago</p>
+                </div>
+                <div class="card" onclick="showPopup('VIT', 'Bachelor of Technology in Computer Science', 'Focused on DSA, Web Development, and Databases. CGPA: 9.2')">
+                    <img src="assets/vit.png" alt="VIT">
+                    <p>Vellore Institute of Technology</p>
+                </div>
             </div>
-            <div class="slide" onclick="showPopup('VIT', 'Bachelor of Technology in Computer Science and Engineering | CGPA: 9.2')">
-                <img src="assets/vit.png" alt="VIT">
-                <p>Vellore Institute of Technology</p>
+        </section>
+
+        <!-- Work Experience Section -->
+        <section class="category">
+            <h2>Work Experience</h2>
+            <div class="scroll-container">
+                <div class="card" onclick="showPopup('UIC', 'Graduate Software Engineer', 'Working on cloud-based application development, database optimization, and UI enhancement.')">
+                    <img src="assets/uic_work.png" alt="UIC Work">
+                    <p>University of Illinois, Chicago</p>
+                </div>
+                <div class="card" onclick="showPopup('Honeywell', 'Software Developer', 'Built scalable applications, automated pipelines, and enhanced backend services.')">
+                    <img src="assets/honeywell.png" alt="Honeywell">
+                    <p>Honeywell</p>
+                </div>
             </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section class="category">
+            <h2>Projects</h2>
+            <div class="scroll-container">
+                <div class="card" onclick="showPopup('SkyWest', 'Performance Analysis', 'Used Tableau & Python to analyze flight performance data.')">
+                    <img src="assets/project1.png" alt="SkyWest">
+                    <p>SkyWest Airlines Performance Analysis</p>
+                </div>
+                <div class="card" onclick="showPopup('Hospital Management', 'Spring Boot & AWS', 'Developed a secure hospital management system with AWS cloud integration.')">
+                    <img src="assets/project2.png" alt="Hospital Management">
+                    <p>Hospital Management</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section class="category">
+            <h2>Skills</h2>
+            <div class="scroll-container">
+                <div class="card">
+                    <p><b>Programming:</b> Java, Python, C++, JavaScript</p>
+                </div>
+                <div class="card">
+                    <p><b>Cloud:</b> AWS, Azure</p>
+                </div>
+                <div class="card">
+                    <p><b>Databases:</b> SQL, MongoDB</p>
+                </div>
+                <div class="card">
+                    <p><b>Web:</b> React, Node.js, Spring Boot</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <h2>Contact</h2>
+        <p>Email: <a href="mailto:vchenn6@uic.edu">vchenn6@uic.edu</a></p>
+        <div class="socials">
+            <a href="https://www.linkedin.com/in/rohith-kumar-ch/"><i class="fab fa-linkedin"></i></a>
+            <a href="https://github.com/rohith1110"><i class="fab fa-github"></i></a>
         </div>
     </section>
-    
-    <section id="experience" class="carousel-section">
-        <h2>Work Experience</h2>
-        <div class="carousel">
-            <div class="slide" onclick="showPopup('UIC', 'Graduate Software Engineer | Dec 2023 - Present')">
-                <img src="assets/uic_work.png" alt="UIC">
-                <p>University of Illinois, Chicago</p>
-            </div>
-            <div class="slide" onclick="showPopup('Honeywell', 'Software Developer | Aug 2021 - Aug 2023')">
-                <img src="assets/honeywell.png" alt="Honeywell">
-                <p>Honeywell</p>
-            </div>
-        </div>
-    </section>
-    
+
+    <footer>
+        <p>&copy; 2024 Rohith Chennareddy | Netflix-Themed Portfolio</p>
+    </footer>
+
+    <!-- Popup -->
     <div id="popup" class="popup">
         <div class="popup-content">
             <span class="close" onclick="closePopup()">&times;</span>
             <h2 id="popup-title"></h2>
+            <h3 id="popup-subtitle"></h3>
             <p id="popup-description"></p>
         </div>
     </div>
-    
+
     <script>
-        function showPopup(title, description) {
+        function showPopup(title, subtitle, description) {
             document.getElementById('popup-title').innerText = title;
+            document.getElementById('popup-subtitle').innerText = subtitle;
             document.getElementById('popup-description').innerText = description;
             document.getElementById('popup').style.display = 'block';
         }
+
         function closePopup() {
             document.getElementById('popup').style.display = 'none';
         }
-        $(document).ready(function(){
-            $('.carousel').slick({
-                dots: true,
-                infinite: true,
-                speed: 300,
-                slidesToShow: 3,
-                adaptiveHeight: true
-            });
-        });
     </script>
 </body>
 
