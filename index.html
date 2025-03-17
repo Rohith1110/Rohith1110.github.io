@@ -5,8 +5,119 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>RohithFlix</title>
-    <link rel="stylesheet" href="styles.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+    <style>
+        body {
+            background-color: #141414;
+            color: #fff;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 50px;
+            background: black;
+        }
+
+        .logo {
+            color: red;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+        }
+
+        /* Category Section */
+        .category {
+            padding: 20px 50px;
+        }
+
+        h2 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        /* Horizontal Scroll Containers */
+        .scroll-container {
+            display: flex;
+            gap: 20px;
+            overflow-x: scroll;
+            white-space: nowrap;
+            padding: 10px 0;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+
+        /* Hide Scrollbar */
+        .scroll-container::-webkit-scrollbar {
+            display: none;
+        }
+
+        /* Cards */
+        .card {
+            background: #222;
+            padding: 15px;
+            width: 220px;
+            border-radius: 8px;
+            text-align: center;
+            cursor: pointer;
+            flex: 0 0 auto;
+            transition: transform 0.2s;
+        }
+
+        .card:hover {
+            transform: scale(1.1);
+        }
+
+        .card img {
+            width: 100%;
+            border-radius: 5px;
+        }
+
+        /* Popup */
+        .popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: black;
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .popup-content {
+            max-width: 400px;
+            padding: 15px;
+        }
+
+        .close {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 24px;
+            cursor: pointer;
+            color: red;
+        }
+    </style>
 </head>
 
 <body>
@@ -26,19 +137,22 @@
 
     <main>
         <!-- Education Section -->
-        <section class="category">
-            <h2>Your Education</h2>
-            <div class="scroll-container">
-                <div class="card" onclick="showPopup('UIC', 'Master of Science in Computer Science', 'Studied AI, cloud computing, and full-stack development. CGPA: 4.0')">
-                    <img src="assets/uic.png" alt="UIC">
-                    <p>University of Illinois, Chicago</p>
-                </div>
-                <div class="card" onclick="showPopup('VIT', 'Bachelor of Technology in Computer Science', 'Focused on DSA, Web Development, and Databases. CGPA: 9.2')">
-                    <img src="assets/vit.png" alt="VIT">
-                    <p>Vellore Institute of Technology</p>
-                </div>
-            </div>
-        </section>
+<section class="category">
+    <h2>Your Education</h2>
+    <div class="scroll-container">
+        <div class="card" onclick="showPopup('UIC', 'Master of Science in Computer Science [CGPA: 4.0]', 
+        'Course Work:<br>CS 401 - Computer Algorithms<br>CS 424 - Visual Analytics<br>CS 415 - Computer Vision<br>CS 418 - Data Science<br>CS 421 - Natural Language Processing<br>CS 519 - Machine Learning on Graphs<br>CS 594 - Applied Cryptography<br>CS 521 - Statistical Natural Language Processing<br>CS 502 - Algorithms in Computational Molecular Biology')">
+            <img src="assets/uic.png" alt="UIC">
+            <p>University of Illinois, Chicago</p>
+        </div>
+        <div class="card" onclick="showPopup('VIT', 'Bachelor of Technology in Computer Science [CGPA: 9.2]', 
+        'Course Work:<br>Data Structures and Algorithms<br>Database Systems<br>Machine Learning<br>Artificial Intelligence<br>Web Development<br>Human Computer Interaction<br>Theory of Computation')">
+            <img src="assets/vit.png" alt="VIT">
+            <p>Vellore Institute of Technology</p>
+        </div>
+    </div>
+</section>
+
 
         <!-- Work Experience Section -->
         <section class="category">
@@ -90,42 +204,29 @@
         </section>
     </main>
 
-    <!-- Contact Section -->
-    <section id="contact">
-        <h2>Contact</h2>
-        <p>Email: <a href="mailto:vchenn6@uic.edu">vchenn6@uic.edu</a></p>
-        <div class="socials">
-            <a href="https://www.linkedin.com/in/rohith-kumar-ch/"><i class="fab fa-linkedin"></i></a>
-            <a href="https://github.com/rohith1110"><i class="fab fa-github"></i></a>
-        </div>
-    </section>
-
-    <footer>
-        <p>&copy; 2024 Rohith Chennareddy | Netflix-Themed Portfolio</p>
-    </footer>
-
     <!-- Popup -->
-    <div id="popup" class="popup">
-        <div class="popup-content">
-            <span class="close" onclick="closePopup()">&times;</span>
-            <h2 id="popup-title"></h2>
-            <h3 id="popup-subtitle"></h3>
-            <p id="popup-description"></p>
-        </div>
+   <div id="popup" class="popup">
+    <div class="popup-content">
+        <span class="close" onclick="closePopup()">&times;</span>
+        <h2 id="popup-title"></h2>
+        <h3 id="popup-subtitle"></h3>
+        <p id="popup-description"></p>
     </div>
+</div>
 
-    <script>
-        function showPopup(title, subtitle, description) {
-            document.getElementById('popup-title').innerText = title;
-            document.getElementById('popup-subtitle').innerText = subtitle;
-            document.getElementById('popup-description').innerText = description;
-            document.getElementById('popup').style.display = 'block';
-        }
+<script>
+    function showPopup(title, subtitle, description) {
+        document.getElementById('popup-title').innerText = title;
+        document.getElementById('popup-subtitle').innerText = subtitle;
+        document.getElementById('popup-description').innerHTML = description; // Using .innerHTML to support line breaks
+        document.getElementById('popup').style.display = 'block';
+    }
 
-        function closePopup() {
-            document.getElementById('popup').style.display = 'none';
-        }
-    </script>
+    function closePopup() {
+        document.getElementById('popup').style.display = 'none';
+    }
+</script>
+
 </body>
 
 </html>
