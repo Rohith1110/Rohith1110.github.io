@@ -1,1 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rohith Chennareddy | Portfolio</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+
+<body>
+    <header class="header">
+        <div class="logo">RohithFlix</div>
+        <nav>
+            <ul>
+                <li><a href="#about">About</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#blog">Blog</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <section id="about" class="banner">
+        <div class="content">
+            <h1>Hi, I'm Rohith Chennareddy</h1>
+            <p>Graduate Software Engineer | Full-Stack Developer | Android Developer</p>
+            <a href="assets/rohith_resume.pdf" download class="btn">Download CV</a>
+        </div>
+    </section>
+    
+    <section id="projects" class="carousel-section">
+        <h2>My Work</h2>
+        <div class="carousel">
+            <div class="slide"><img src="assets/project1.png" alt="Project 1"><p>Project 1</p></div>
+            <div class="slide"><img src="assets/project2.png" alt="Project 2"><p>Project 2</p></div>
+            <div class="slide"><img src="assets/project3.png" alt="Project 3"><p>Project 3</p></div>
+        </div>
+    </section>
+    
+    <section id="experience">
+        <h2>Work Experience</h2>
+        <p>Graduate Software Engineer, UIC | Software Developer, Honeywell</p>
+    </section>
+    
+    <section id="blog">
+        <h2>Blog Posts</h2>
+        <div class="carousel">
+            <div class="slide"><p>Blog Post 1</p></div>
+            <div class="slide"><p>Blog Post 2</p></div>
+        </div>
+    </section>
+    
+    <footer>
+        <p>Contact: <a href="mailto:vchenn6@uic.edu">vchenn6@uic.edu</a></p>
+        <div class="socials">
+            <a href="https://www.linkedin.com/in/rohith-kumar-ch/"><i class="fab fa-linkedin"></i></a>
+            <a href="https://github.com/rohith1110"><i class="fab fa-github"></i></a>
+        </div>
+    </footer>
+    
+    <script>
+        $(document).ready(function(){
+            $('.carousel').slick({
+                dots: true,
+                infinite: true,
+                speed: 300,
+                slidesToShow: 1,
+                adaptiveHeight: true
+            });
+        });
+    </script>
+</body>
+
+</html>
 
