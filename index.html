@@ -4,66 +4,88 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Shashank Prasanna Kumar • Portfolio</title>
-  <meta name="description" content="Full‑stack developer in Supply Chain & ERP. Clean UX, reliable systems, measurable outcomes."/>
+  <meta name="description" content="Full-stack developer in Supply Chain & ERP. Clean UX, reliable systems, measurable outcomes."/>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
   <style>
     :root{
       --bg:#f7f9fc; --paper:#ffffff; --ink:#0f172a; --muted:#5b6573; --line:#e7ecf3; --chip:#f2f6fb;
       --accent:#0ea5e9; --accent-2:#38bdf8; --ok:#10b981; --shadow:0 10px 28px rgba(2,6,23,.08);
+      --band:#f3f8ff; /* light blue band */
+      --band2:#eef4fb; /* alternation */
     }
     *{box-sizing:border-box}
     html,body{margin:0}
+    html{scroll-behavior:smooth}
     body{font-family:'Inter',system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--ink);line-height:1.6}
     a{color:inherit;text-decoration:none}
     img{display:block;max-width:100%}
     .container{width:min(1140px,92vw);margin:0 auto}
 
-    /* ===== Nav (minimal, like sample) ===== */
-    .nav{position:sticky;top:0;z-index:50;background:rgba(247,249,252,.86);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+    /* ===== Nav ===== */
+    .nav{position:sticky;top:0;z-index:50;background:rgba(247,249,252,.86);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);transition:box-shadow .25s ease}
+    .nav.scrolled{box-shadow:0 6px 20px rgba(2,6,23,.06)}
     .nav-inner{display:flex;align-items:center;justify-content:space-between;padding:14px 10px}
     .brand{font-weight:800;letter-spacing:.2px}
     .nav-links{display:flex;gap:20px}
     .nav-links a{color:var(--muted);font-weight:600}
     .nav-links a:hover{color:var(--ink)}
 
-    /* ===== Hero (clean two‑column, blue accent) ===== */
-    .hero{padding:72px 0 48px}
-    .hero-grid{display:grid;grid-template-columns:1.3fr .8fr;gap:32px;align-items:center}
-    .title{font-size:clamp(2rem, 5vw, 3.2rem);line-height:1.15;margin:0 0 4px 0}
-    .typed{font-weight:700;color:var(--ink)}
+    /* ===== Section bands (alternating) ===== */
+    section{padding:64px 0; position:relative}
+    section:nth-of-type(odd){background:var(--paper)}
+    section:nth-of-type(even){background:linear-gradient(180deg, var(--band) 0%, #ffffff 140%)}
+    section::before{
+      content:""; position:absolute; left:0; right:0; top:0; height:12px;
+      background:linear-gradient(to bottom, rgba(15,23,42,0.06), rgba(15,23,42,0));
+      opacity:.5; pointer-events:none;
+    }
+
+    .kicker{color:var(--accent);font-weight:800;text-transform:uppercase;letter-spacing:.15em;font-size:.75rem;margin-bottom:6px}
+    h2.section-title{font-size:1.6rem;margin:0 0 22px 0}
+    .muted{color:var(--muted)}
+
+    /* ===== Hero ===== */
+    .hero{padding:84px 0 56px; background:linear-gradient(180deg, #ffffff 0%, var(--band2) 120%)}
+    .hero-grid{display:grid;grid-template-columns:1.25fr .9fr;gap:32px;align-items:center}
+    .title{font-size:clamp(2rem, 5vw, 3.2rem);line-height:1.15;margin:0 0 6px 0}
+    .typed{font-weight:700;color:var(--ink);min-height:1.6em}
     .lead{color:var(--muted);max-width:68ch;margin-top:10px}
     .cta{display:flex;gap:12px;margin-top:18px;flex-wrap:wrap}
-    .btn{display:inline-flex;align-items:center;gap:10px;border:1px solid var(--line);background:var(--paper);padding:11px 16px;border-radius:12px;font-weight:700}
+    .btn{display:inline-flex;align-items:center;gap:10px;border:1px solid var(--line);background:var(--paper);padding:11px 16px;border-radius:12px;font-weight:700;transition:transform .18s ease, box-shadow .18s ease}
+    .btn:hover{transform:translateY(-2px); box-shadow:var(--shadow)}
     .btn.primary{background:linear-gradient(180deg, var(--accent), var(--accent-2));color:#05222e;border:none}
     .meta{display:flex;gap:14px;margin-top:12px;color:var(--muted);font-size:.95rem;flex-wrap:wrap}
     .photo{justify-self:end}
     .avatar{width:min(360px,40vw);aspect-ratio:1/1;border-radius:22px;object-fit:cover;border:1px solid var(--line);box-shadow:var(--shadow)}
-
-    @media(max-width:900px){.hero-grid{grid-template-columns:1fr}.photo{order:-1;justify-self:start}.avatar{width:180px}}
-
-    /* ===== Sections ===== */
-    section{padding:56px 0;border-top:1px solid var(--line)}
-    .kicker{color:var(--accent);font-weight:800;text-transform:uppercase;letter-spacing:.15em;font-size:.75rem;margin-bottom:6px}
-    h2.section-title{font-size:1.6rem;margin:0 0 22px 0}
-    .muted{color:var(--muted)}
+    @media(max-width:900px){.hero-grid{grid-template-columns:1fr}.photo{order:-1;justify-self:start}.avatar{width:200px}}
 
     /* ===== Chips ===== */
     .chips{display:flex;flex-wrap:wrap;gap:10px}
     .chip{background:var(--chip);border:1px solid var(--line);padding:7px 11px;border-radius:999px;font-weight:600;font-size:.9rem}
 
-    /* ===== Timeline cards (Experience & Education) ===== */
-    .timeline{display:grid;gap:16px}
-    .t-item{display:grid;grid-template-columns:68px 1fr auto;gap:16px;align-items:center;background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:14px;box-shadow:var(--shadow)}
+    /* ===== Timeline (Experience & Education) ===== */
+    .timeline{display:grid;gap:18px}
+    .t-item{
+      display:grid;grid-template-columns:68px 1fr auto;gap:16px;align-items:center;
+      background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:14px;box-shadow:var(--shadow);
+      transition:transform .2s ease, box-shadow .2s ease;
+    }
+    .t-item:hover{transform:translateY(-3px); box-shadow:0 14px 36px rgba(2,6,23,.12)}
     .t-logo{width:60px;height:60px;border-radius:12px;border:1px solid var(--line);object-fit:contain;background:#fff;padding:6px}
     .t-role{font-weight:800}
     .t-org{color:var(--muted);font-weight:700}
     .t-date{color:var(--muted);font-weight:700;white-space:nowrap}
     .t-desc{margin:6px 0 0;color:var(--muted)}
 
-    /* ===== Projects grid with image + copy; modals for details ===== */
+    /* ===== Projects ===== */
     .grid{display:grid;grid-template-columns:repeat(12,1fr);gap:18px}
-    .card{grid-column:span 12;background:var(--paper);border:1px solid var(--line);border-radius:16px;overflow:hidden;box-shadow:var(--shadow)}
+    .card{
+      grid-column:span 12;background:var(--paper);border:1px solid var(--line);
+      border-radius:16px;overflow:hidden;box-shadow:var(--shadow);
+      transition:transform .2s ease, box-shadow .2s ease;
+    }
+    .card:hover{transform:translateY(-4px); box-shadow:0 16px 38px rgba(2,6,23,.12)}
     .card-row{display:grid;grid-template-columns:320px 1fr;gap:16px}
     .media{background:#eef5fb;border-right:1px solid var(--line)}
     .media img{width:100%;height:100%;object-fit:cover}
@@ -74,7 +96,7 @@
     @media(max-width:880px){.card-row{grid-template-columns:1fr}.media{height:200px;border-right:none;border-bottom:1px solid var(--line)}}
 
     /* ===== Footer ===== */
-    footer{padding:34px 0;color:var(--muted)}
+    footer{padding:34px 0;color:var(--muted); background:linear-gradient(180deg, #ffffff 0%, var(--band2) 140%)}
     .icons{display:flex;gap:14px}
 
     /* ===== Dialogs (projects only) ===== */
@@ -84,14 +106,21 @@
     .dlg-body{padding:16px}
     .close-btn{border:1px solid var(--line);background:var(--paper);padding:8px 10px;border-radius:10px;cursor:pointer}
 
-    /* ===== Scroll reveal (fade-up) ===== */
-    .reveal{opacity:0;transform:translateY(18px);transition:opacity .7s ease, transform .7s ease}
-    .reveal.show{opacity:1;transform:none}
+    /* ===== Scroll reveal (fade-up + stagger) ===== */
+    .reveal{opacity:0; transform:translateY(18px); transition:opacity .7s ease, transform .7s ease}
+    .reveal.show{opacity:1; transform:none}
+    .stagger > *{opacity:0; transform:translateY(14px)}
+    .stagger.show > *{opacity:1; transform:none; transition:opacity .6s ease, transform .6s ease}
+    .stagger.show > *:nth-child(1){transition-delay:.05s}
+    .stagger.show > *:nth-child(2){transition-delay:.12s}
+    .stagger.show > *:nth-child(3){transition-delay:.18s}
+    .stagger.show > *:nth-child(4){transition-delay:.24s}
+    .stagger.show > *:nth-child(5){transition-delay:.30s}
   </style>
 </head>
 <body>
   <!-- Nav -->
-  <header class="nav">
+  <header class="nav" id="topNav">
     <div class="container nav-inner">
       <div class="brand">Shashank PK</div>
       <nav class="nav-links" aria-label="Primary">
@@ -106,10 +135,10 @@
     </div>
   </header>
 
-  <!-- Hero -->
+  <!-- Hero (band) -->
   <section class="hero">
     <div class="container hero-grid">
-      <div>
+      <div class="reveal">
         <h1 class="title">Hello, I'm <span style="color:var(--accent)">Shashank Prasanna Kumar</span></h1>
         <h2 class="typed"><span id="typed"></span></h2>
         <p class="lead">I build reliable, scalable systems across the stack with a focus on Supply Chain and ERP integrations, automation, and measurable business outcomes.</p>
@@ -123,7 +152,7 @@
           <span><i class="fa-solid fa-envelope"></i> shashankprasannakumar@gmail.com</span>
         </div>
       </div>
-      <div class="photo"><img class="avatar" src="Sonu.png" alt="Shashank portrait"></div>
+      <div class="photo reveal"><img class="avatar" src="Sonu.png" alt="Shashank portrait" loading="eager"></div>
     </div>
   </section>
 
@@ -133,16 +162,18 @@
       <div class="container reveal">
         <div class="kicker">About</div>
         <h2 class="section-title">A pragmatic builder with an eye for operations</h2>
-        <p class="muted">Results‑driven professional with hands‑on experience across Supply Chain, ERP, and full‑stack engineering. I turn complex requirements into straightforward systems: stable APIs, clean data contracts, and thoughtful UIs. I prioritize automation, observability, and documentation so teams move faster with confidence.</p>
+        <p class="muted">Results-driven professional with hands-on experience across Supply Chain, ERP, and full-stack engineering. I turn complex requirements into straightforward systems: stable APIs, clean data contracts, and thoughtful UIs. I prioritize automation, observability, and documentation so teams move faster with confidence.</p>
       </div>
     </section>
 
-    <!-- Skills -->
+    <!-- Skills (staggered chips) -->
     <section id="skills">
-      <div class="container reveal">
-        <div class="kicker">Skills</div>
-        <h2 class="section-title">Tech I ship with</h2>
-        <div class="chips">
+      <div class="container">
+        <div class="reveal">
+          <div class="kicker">Skills</div>
+          <h2 class="section-title">Tech I ship with</h2>
+        </div>
+        <div class="chips stagger" id="skillsChips">
           <span class="chip">Java • Spring Boot</span>
           <span class="chip">Node.js • Express</span>
           <span class="chip">React • TypeScript</span>
@@ -159,92 +190,97 @@
       </div>
     </section>
 
-    <!-- Experience (logos sized & aligned) -->
+    <!-- Experience -->
     <section id="experience">
-      <div class="container reveal">
-        <div class="kicker">Experience</div>
-        <h2 class="section-title">Selected roles & impact</h2>
-        <div class="timeline">
+      <div class="container">
+        <div class="reveal">
+          <div class="kicker">Experience</div>
+          <h2 class="section-title">Selected roles & impact</h2>
+        </div>
+        <div class="timeline stagger" id="expList">
           <article class="t-item">
-            <img class="t-logo" src="Infosys.jpeg" alt="Infosys logo">
+            <img class="t-logo" src="Infosys.jpeg" alt="Infosys logo" loading="lazy">
             <div>
               <div class="t-role">Software Engineer</div>
               <div class="t-org">Infosys • Supply Chain Optimization</div>
-              <p class="t-desc">Reduced stock‑outs by 12% and cut month‑end batch runtime from 6h → 2.1h through PL/SQL tuning and SAP automations.</p>
+              <p class="t-desc">Reduced stock-outs by 12% and cut month-end batch runtime from 6h → 2.1h through PL/SQL tuning and SAP automations.</p>
               <div class="chips" style="margin-top:6px"><span class="chip">Java</span><span class="chip">SAP</span><span class="chip">Oracle</span></div>
             </div>
-            <div class="t-date">Aug 2020 – Jul 2022</div>
+            <div class="t-date">Aug 2020 – Jul 2022</div>
           </article>
 
           <article class="t-item">
-            <img class="t-logo" src="Flipkart.jpeg" alt="Flipkart logo">
+            <img class="t-logo" src="Flipkart.jpeg" alt="Flipkart logo" loading="lazy">
             <div>
               <div class="t-role">Software Engineer — Logistics Analytics</div>
               <div class="t-org">Flipkart</div>
               <p class="t-desc">Built operations dashboards and partner ETL; 18% reduction in escalations.</p>
               <div class="chips" style="margin-top:6px"><span class="chip">React</span><span class="chip">Node.js</span><span class="chip">Analytics</span></div>
             </div>
-            <div class="t-date">Aug 2022 – Dec 2022</div>
+            <div class="t-date">Aug 2022 – Dec 2022</div>
           </article>
 
           <article class="t-item">
-            <img class="t-logo" src="Oracle.jpeg" alt="Oracle logo">
+            <img class="t-logo" src="Oracle.jpeg" alt="Oracle logo" loading="lazy">
             <div>
               <div class="t-role">Engineer — ERP Integrations</div>
               <div class="t-org">Oracle</div>
-              <p class="t-desc">Standardized adapters and observability; cut integration lead‑time by ~40%.</p>
+              <p class="t-desc">Standardized adapters and observability; cut integration lead-time by ~40%.</p>
               <div class="chips" style="margin-top:6px"><span class="chip">OCI</span><span class="chip">APEX</span><span class="chip">PL/SQL</span></div>
             </div>
-            <div class="t-date">Jan 2023 – Aug 2023</div>
+            <div class="t-date">Jan 2023 – Aug 2023</div>
           </article>
 
           <article class="t-item">
-            <img class="t-logo" src="EPIC.jpeg" alt="EPIC logo">
+            <img class="t-logo" src="EPIC.jpeg" alt="EPIC logo" loading="lazy">
             <div>
               <div class="t-role">Developer — Healthcare Systems</div>
               <div class="t-org">EPIC</div>
-              <p class="t-desc">RBAC & audit trails with PHI safeguards; zero P1 incidents post‑launch.</p>
+              <p class="t-desc">RBAC & audit trails with PHI safeguards; zero P1 incidents post-launch.</p>
               <div class="chips" style="margin-top:6px"><span class="chip">C#</span><span class="chip">Security</span><span class="chip">Integrations</span></div>
             </div>
-            <div class="t-date">Sep 2023 – Apr 2024</div>
+            <div class="t-date">Sep 2023 – Apr 2024</div>
           </article>
 
           <article class="t-item">
-            <img class="t-logo" src="SAP.jpeg" alt="SAP logo">
+            <img class="t-logo" src="SAP.jpeg" alt="SAP logo" loading="lazy">
             <div>
               <div class="t-role">Consultant — SAP Automations</div>
               <div class="t-org">SAP</div>
               <p class="t-desc">Fiori automations for repetitive ops; ~25% efficiency gains.</p>
             </div>
-            <div class="t-date">May 2024 – Present</div>
+            <div class="t-date">May 2024 – Present</div>
           </article>
         </div>
       </div>
     </section>
 
-    <!-- Education (with logos) -->
+    <!-- Education -->
     <section id="education">
-      <div class="container reveal">
-        <div class="kicker">Education</div>
-        <h2 class="section-title">Formal education</h2>
-        <div class="timeline">
+      <div class="container">
+        <div class="reveal">
+          <div class="kicker">Education</div>
+          <h2 class="section-title">Formal education</h2>
+        </div>
+        <div class="timeline stagger" id="eduList">
           <article class="t-item">
-            <img class="t-logo" src="UIC.jpeg" alt="UIC logo">
+            <img class="t-logo" src="UIC.jpeg" alt="UIC logo" loading="lazy">
             <div>
               <div class="t-role">M.S. — Information Technology & Management</div>
               <div class="t-org">University of Illinois Chicago</div>
               <div class="chips" style="margin-top:6px"><span class="chip">Data</span><span class="chip">Systems</span><span class="chip">Product</span></div>
             </div>
-            <div class="t-date">Aug 2022 – May 2024</div>
+            <div class="t-date">Aug 2022 – May 2024</div>
           </article>
+
           <article class="t-item">
-            <img class="t-logo" src="BTECH.jpeg" alt="VTU logo">
+            <img class="t-logo" src="BTECH.jpeg" alt="VTU logo" loading="lazy">
             <div>
               <div class="t-role">B.E. — Mechanical Engineering</div>
               <div class="t-org">Visvesvaraya Technological University</div>
-              <div class="chips" style="margin-top:6px"><span class="chip">2016 – 2020</span></div>
+              <div class="chips" style="margin-top:6px"><span class="chip">2016 – 2020</span></div>
             </div>
-            <div class="t-date">2016 – 2020</div>
+            <div class="t-date">2016 – 2020</div>
           </article>
         </div>
         <p class="muted" style="margin-top:10px">Timeline: undergraduate (2016–2020) → industry (2020) → master’s (2022–2024). No gaps.</p>
@@ -253,13 +289,15 @@
 
     <!-- Projects -->
     <section id="projects">
-      <div class="container reveal">
-        <div class="kicker">Projects</div>
-        <h2 class="section-title">Selected builds</h2>
-        <div class="grid">
+      <div class="container">
+        <div class="reveal">
+          <div class="kicker">Projects</div>
+          <h2 class="section-title">Selected builds</h2>
+        </div>
+        <div class="grid stagger" id="projGrid">
           <article class="card">
             <div class="card-row">
-              <div class="media"><img src="pro2" alt="Supply chain dashboard"></div>
+              <div class="media"><img src="pro2" alt="Supply chain dashboard" loading="lazy"></div>
               <div class="body">
                 <h3>Supply Chain Control Tower</h3>
                 <p>Dashboards with anomaly alerts; reduced SLA breaches by 18%.</p>
@@ -268,23 +306,25 @@
               </div>
             </div>
           </article>
+
           <article class="card">
             <div class="card-row">
-              <div class="media"><img src="Pro1" alt="ERP integrations"></div>
+              <div class="media"><img src="Pro1" alt="ERP integrations" loading="lazy"></div>
               <div class="body">
                 <h3>ERP Integrations Platform</h3>
-                <p>Unified adapter for SAP/Oracle; cut integration lead‑time by ~40%.</p>
+                <p>Unified adapter for SAP/Oracle; cut integration lead-time by ~40%.</p>
                 <div class="chips" style="margin-top:8px"><span class="chip">Java</span><span class="chip">Spring Boot</span><span class="chip">OCI</span></div>
                 <div class="cta"><button class="btn" data-dialog="dlg-proj2">More</button></div>
               </div>
             </div>
           </article>
+
           <article class="card">
             <div class="card-row">
-              <div class="media"><img src="Pro1" alt="Healthcare module"></div>
+              <div class="media"><img src="Pro1" alt="Healthcare module" loading="lazy"></div>
               <div class="body">
                 <h3>Secure Healthcare Modules</h3>
-                <p>RBAC and audit trails aligned to HIPAA; zero P1 incidents post‑launch.</p>
+                <p>RBAC and audit trails aligned to HIPAA; zero P1 incidents post-launch.</p>
                 <div class="chips" style="margin-top:8px"><span class="chip">C#</span><span class="chip">PostgreSQL</span><span class="chip">Security</span></div>
                 <div class="cta"><button class="btn" data-dialog="dlg-proj3">More</button></div>
               </div>
@@ -296,13 +336,15 @@
 
     <!-- Certifications -->
     <section id="certs">
-      <div class="container reveal">
-        <div class="kicker">Certifications & Awards</div>
-        <h2 class="section-title">Validated skills</h2>
-        <div class="grid">
+      <div class="container">
+        <div class="reveal">
+          <div class="kicker">Certifications & Awards</div>
+          <h2 class="section-title">Validated skills</h2>
+        </div>
+        <div class="grid stagger" id="certGrid">
           <article class="card">
             <div class="card-row">
-              <div class="media"><img src="Oracle" alt="OCI"></div>
+              <div class="media"><img src="Oracle" alt="OCI" loading="lazy"></div>
               <div class="body">
                 <h3>Oracle Cloud Infrastructure Certified</h3>
                 <p>Architecture, networking, security, and deployment models.</p>
@@ -312,7 +354,7 @@
           </article>
           <article class="card">
             <div class="card-row">
-              <div class="media"><img src="SAP.jpeg" alt="SAP"></div>
+              <div class="media"><img src="SAP.jpeg" alt="SAP" loading="lazy"></div>
               <div class="body">
                 <h3>SAP Certified Application Associate</h3>
                 <p>Proficiency in SAP systems implementation and integration.</p>
@@ -326,11 +368,13 @@
 
     <!-- Contact -->
     <section id="contact">
-      <div class="container reveal">
-        <div class="kicker">Contact</div>
-        <h2 class="section-title">Let’s build something</h2>
-        <p class="muted">Best via email or LinkedIn — I respond quickly.</p>
-        <div class="cta" style="margin-top:10px">
+      <div class="container">
+        <div class="reveal">
+          <div class="kicker">Contact</div>
+          <h2 class="section-title">Let’s build something</h2>
+          <p class="muted">Best via email or LinkedIn — I respond quickly.</p>
+        </div>
+        <div class="cta reveal" style="margin-top:10px">
           <a class="btn" href="mailto:shashankprasannakumar@gmail.com"><i class="fa-solid fa-envelope"></i> Email</a>
           <a class="btn" href="https://linkedin.com/in/shashankprasannakumar" target="_blank" rel="noopener"><i class="fab fa-linkedin"></i> LinkedIn</a>
         </div>
@@ -349,14 +393,14 @@
     </div>
   </footer>
 
-  <!-- Project detail dialogs only (useful pop‑ups) -->
+  <!-- Project detail dialogs (useful pop-ups only) -->
   <dialog id="dlg-proj1">
     <div class="dlg-head"><div class="dlg-title">Supply Chain Control Tower — Details</div><button class="close-btn" data-close>Close</button></div>
     <div class="dlg-body">
       <ul>
-        <li>Integrated shipment, inventory, and demand feeds with schema‑validated contracts.</li>
-        <li>Event‑driven alerts (stockouts, ETA slips) with email/MS Teams hooks.</li>
-        <li>Role‑based views for CXOs vs DC managers; exportable insights.</li>
+        <li>Integrated shipment, inventory, and demand feeds with schema-validated contracts.</li>
+        <li>Event-driven alerts (stockouts, ETA slips) with email/MS Teams hooks.</li>
+        <li>Role-based views for CXOs vs DC managers; exportable insights.</li>
       </ul>
     </div>
   </dialog>
@@ -380,12 +424,16 @@
   </dialog>
 
   <script>
-    // Typed header text (like sample portfolio)
-    const phrases = [
-      'Full‑Stack Developer',
-      'Supply Chain & ERP',
-      'Data‑Driven Delivery'
-    ];
+    // Sticky nav shadow
+    const topNav = document.getElementById('topNav');
+    const setNavShadow = () => {
+      if (window.scrollY > 8) topNav.classList.add('scrolled'); else topNav.classList.remove('scrolled');
+    };
+    setNavShadow();
+    window.addEventListener('scroll', setNavShadow, {passive:true});
+
+    // Typed header text
+    const phrases = ['Full-Stack Developer','Supply Chain & ERP','Data-Driven Delivery'];
     const el = document.getElementById('typed');
     let i=0, j=0, erasing=false;
     function tick(){
@@ -397,15 +445,24 @@
         el.textContent = current.slice(0, j--);
         if(j===0){erasing=false;i=(i+1)%phrases.length}
       }
-      setTimeout(tick, erasing?50:85);
+      setTimeout(tick, erasing?48:85);
     }
     tick();
 
-    // Reveal on scroll
-    const ro = new IntersectionObserver((entries)=>{
-      entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('show'); ro.unobserve(e.target);} })
-    },{threshold:0.12});
-    document.querySelectorAll('.reveal, section').forEach(el=>ro.observe(el));
+    // Reveal on scroll + stagger
+    const reveal = (els, cls='show')=>{
+      const io = new IntersectionObserver((entries)=>{
+        entries.forEach(e=>{
+          if(e.isIntersecting){
+            e.target.classList.add(cls);
+            io.unobserve(e.target);
+          }
+        })
+      }, {threshold:0.12});
+      els.forEach(el=>io.observe(el));
+    };
+    reveal(document.querySelectorAll('.reveal'));
+    reveal(document.querySelectorAll('.stagger'));
 
     // Year
     document.getElementById('year').textContent = new Date().getFullYear();
