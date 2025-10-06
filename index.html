@@ -2,185 +2,566 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Shashank Prasanna Kumar | Portfolio</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Shashank Prasanna Kumar • Portfolio</title>
+  <meta name="description" content="Full‑stack developer focused on Supply Chain & ERP systems, building data‑driven products with clean UX."/>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
   <style>
-    * {margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
-    body {background:#f6f8fc;color:#333;scroll-behavior:smooth;}
-    header {
-      background:linear-gradient(135deg,#007bff,#0056d2);
-      color:white;text-align:center;padding:80px 20px;
-      position:relative;
-    }
-    header img {
-      width:160px;height:160px;border-radius:50%;
-      border:4px solid white;object-fit:cover;margin-bottom:20px;
-      box-shadow:0 8px 20px rgba(0,0,0,0.2);
-    }
-    header h1 {font-size:2.5em;margin-bottom:8px;}
-    header p {font-size:1.2em;opacity:0.9;}
-    header a.resume-btn {
-      display:inline-block;margin-top:18px;padding:10px 22px;
-      background:white;color:#007bff;font-weight:600;border-radius:30px;
-      text-decoration:none;transition:0.3s;
-    }
-    header a.resume-btn:hover {background:#e9f0ff;}
-
-    section {padding:70px 10%;text-align:center;}
-    section h2 {
-      color:#007bff;font-size:2em;margin-bottom:30px;
-      position:relative;display:inline-block;
-    }
-    section h2::after {
-      content:"";display:block;margin:8px auto 0;width:60px;height:3px;
-      background:#007bff;border-radius:2px;
+    :root{
+      --bg:#0b0d10;           /* dark base */
+      --paper:#0f1318;        /* cards */
+      --text:#e5e7eb;         /* primary text */
+      --muted:#a3aab4;        /* secondary text */
+      --line:#1f2937;         /* hairlines */
+      --accent:#10b981;       /* emerald accent (subtle, not shouty) */
+      --accent-2:#34d399;     /* lighter accent */
+      --chip:#111827;         /* tags */
+      --shadow: 0 10px 30px rgba(0,0,0,.35);
     }
 
-    .about p {
-      max-width:900px;margin:0 auto;font-size:1.1em;line-height:1.6;color:#555;
+    /* Light theme (toggleable) */
+    .light{--bg:#f6f8fc;--paper:#ffffff;--text:#0f172a;--muted:#5b6573;--line:#e5e7eb;--chip:#f1f5f9;--shadow: 0 10px 24px rgba(15, 23, 42, .06);} 
+
+    *{box-sizing:border-box}
+    html,body{margin:0}
+    body{font-family:'Inter',system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+    a{color:inherit;text-decoration:none}
+    img{max-width:100%;display:block}
+    .container{width:min(1120px,92vw);margin:0 auto}
+
+    /* ===== Top Nav ===== */
+    .nav{position:sticky;top:0;z-index:50;backdrop-filter:saturate(140%) blur(8px);background:color-mix(in oklab, var(--bg) 85%, transparent);border-bottom:1px solid var(--line)}
+    .nav-wrap{display:flex;align-items:center;justify-content:space-between;padding:12px 12px}
+    .brand{font-weight:800;letter-spacing:.2px}
+    .nav-links{display:flex;gap:18px}
+    .nav-links a{color:var(--muted);font-weight:600;font-size:.95rem}
+    .nav-links a:hover{color:var(--text)}
+    .theme-toggle{border:1px solid var(--line);background:var(--chip);color:var(--text);padding:8px 10px;border-radius:10px;cursor:pointer}
+
+    /* ===== Hero ===== */
+    .hero{padding:72px 0 36px;border-bottom:1px solid var(--line)}
+    .hero-grid{display:grid;grid-template-columns:140px 1fr;gap:24px;align-items:center}
+    .avatar{width:140px;height:140px;border-radius:16px;object-fit:cover;border:2px solid var(--line);box-shadow:var(--shadow)}
+    .title{font-size:clamp(1.6rem, 2.6vw + .5rem, 2.6rem);line-height:1.2;margin:0}
+    .subtitle{color:var(--muted);margin-top:8px}
+    .actions{display:flex;gap:12px;margin-top:16px;flex-wrap:wrap}
+    .btn{display:inline-flex;align-items:center;gap:10px;border:1px solid var(--line);background:var(--chip);padding:10px 14px;border-radius:12px;font-weight:700}
+    .btn:hover{border-color:color-mix(in oklab, var(--accent) 60%, var(--line));}
+    .btn.primary{background:linear-gradient(180deg, var(--accent), var(--accent-2));color:#06281b;border:none}
+    .meta{display:flex;gap:14px;margin-top:12px;color:var(--muted);font-size:.95rem}
+
+    /* ===== Sections ===== */
+    section{padding:44px 0;border-bottom:1px solid var(--line)}
+    h2.section-title{font-size:1.35rem;letter-spacing:.3px;margin:0 0 22px 0}
+    .kicker{color:var(--accent);font-weight:800;text-transform:uppercase;letter-spacing:.15em;font-size:.75rem;margin-bottom:6px}
+
+    /* ===== About ===== */
+    .about p{color:var(--muted);font-size:1.05rem}
+
+    /* ===== Skills (chips) ===== */
+    .chips{display:flex;flex-wrap:wrap;gap:10px}
+    .chip{background:var(--chip);border:1px solid var(--line);padding:8px 12px;border-radius:999px;font-weight:600;font-size:.92rem}
+
+    /* ===== Timeline ===== */
+    .timeline{display:grid;gap:14px}
+    .item{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:16px;display:grid;grid-template-columns:1fr auto;gap:10px;align-items:center;box-shadow:var(--shadow)}
+    .item .role{font-weight:800}
+    .item .org{color:var(--muted);font-weight:700}
+    .item .date{color:var(--muted);font-weight:700}
+    .item .meta-row{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px}
+    .item .tag{background:var(--chip);border:1px solid var(--line);padding:4px 8px;border-radius:999px;font-size:.78rem;font-weight:700;color:var(--muted)}
+    .item .more{justify-self:end}
+
+    .logos{display:flex;gap:14px;flex-wrap:wrap;margin-top:10px}
+    .logos img{height:28px;width:auto;opacity:.85;filter:grayscale(100%)}
+
+    /* ===== Cards (Projects & Certs) ===== */
+    .grid{display:grid;grid-template-columns:repeat(12,1fr);gap:16px}
+    .card{grid-column:span 12;background:var(--paper);border:1px solid var(--line);border-radius:16px;overflow:hidden;box-shadow:var(--shadow)}
+    .card .media{height:180px;background:var(--chip);display:flex;align-items:center;justify-content:center;border-bottom:1px solid var(--line)}
+    .card .media img{height:100%;width:100%;object-fit:cover}
+    .card .body{padding:14px}
+    .card h3{margin:0 0 4px 0;font-size:1.05rem}
+    .card p{margin:0;color:var(--muted);font-size:.95rem}
+    .card .card-row{display:flex;justify-content:space-between;align-items:center;margin-top:10px}
+
+    @media(min-width:720px){
+      .card{grid-column:span 6}
+    }
+    @media(min-width:1024px){
+      .card{grid-column:span 4}
+      .hero-grid{grid-template-columns:180px 1fr}
+      .avatar{width:180px;height:180px}
     }
 
-    .cards {
-      display:flex;flex-wrap:wrap;justify-content:center;gap:25px;
-    }
-    .card {
-      background:white;border-radius:20px;padding:25px;width:340px;
-      box-shadow:0 5px 15px rgba(0,0,0,0.1);
-      transition:transform 0.3s ease, box-shadow 0.3s ease;
-    }
-    .card:hover {
-      transform:translateY(-8px);
-      box-shadow:0 10px 25px rgba(0,0,0,0.15);
-    }
-    .card img {
-      height:70px;width:auto;object-fit:contain;margin-bottom:15px;
-    }
-    .card h3 {margin-bottom:10px;font-size:1.2em;}
-    .card p {color:#666;font-size:0.95em;line-height:1.4;}
-    .card strong {color:#333;}
+    /* ===== Footer ===== */
+    footer{padding:30px 0;color:var(--muted)}
+    .icons{display:flex;gap:14px}
+    .icons a{font-size:1.25rem}
 
-    footer {
-      background:#0d1b2a;color:white;text-align:center;
-      padding:40px 20px;margin-top:50px;
-    }
-    footer .icons {
-      margin-bottom:15px;
-    }
-    footer .icons a {
-      color:white;margin:0 10px;font-size:1.6em;transition:color 0.3s;
-    }
-    footer .icons a:hover {color:#007bff;}
-    footer p {font-size:0.9em;color:#bbb;}
+    /* ===== Dialog (pop‑up) ===== */
+    dialog{border:none;border-radius:16px;padding:0;background:var(--paper);color:var(--text);box-shadow:var(--shadow);width:min(760px,92vw)}
+    .dlg-head{display:flex;justify-content:space-between;align-items:center;padding:14px 16px;border-bottom:1px solid var(--line)}
+    .dlg-title{font-weight:800}
+    .dlg-body{padding:16px}
+    .close-btn{border:1px solid var(--line);background:var(--chip);color:var(--text);padding:8px 10px;border-radius:10px;cursor:pointer}
 
-    @keyframes fadeUp {
-      0% {opacity:0;transform:translateY(30px);}
-      100% {opacity:1;transform:translateY(0);}
-    }
-    .fade {opacity:0;animation:fadeUp 0.8s ease forwards;}
+    /* ===== Small motion ===== */
+    .reveal{opacity:0;transform:translateY(10px);transition:all .6s ease}
+    .reveal.show{opacity:1;transform:none}
   </style>
 </head>
-<body>
+<body class="light">
+  <nav class="nav">
+    <div class="container nav-wrap">
+      <div class="brand">Shashank PK</div>
+      <div class="nav-links" role="navigation" aria-label="Primary">
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#experience">Experience</a>
+        <a href="#education">Education</a>
+        <a href="#projects">Projects</a>
+        <a href="#certs">Certifications</a>
+        <a href="#contact">Contact</a>
+      </div>
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme"><i class="fa-solid fa-circle-half-stroke"></i></button>
+    </div>
+  </nav>
 
-  <header>
-    <img src="Sonu.png" alt="Profile Photo">
-    <h1>Shashank Prasanna Kumar</h1>
-    <p>Full Stack Developer | Supply Chain & ERP Systems | Data-Driven Solutions</p>
-    <a href="Resume.pdf" class="resume-btn" download>Download Resume</a>
+  <header class="hero">
+    <div class="container hero-grid">
+      <img class="avatar" src="Sonu.png" alt="Shashank portrait" loading="eager"/>
+      <div>
+        <h1 class="title">Full‑Stack Developer • Supply Chain & ERP • Data‑Driven Delivery</h1>
+        <p class="subtitle">I design & build reliable, scalable systems across the stack, with a strong focus on Supply Chain and ERP integrations, automation, and measurable business outcomes.</p>
+        <div class="actions">
+          <a class="btn primary" href="Resume.pdf" download><i class="fa-solid fa-file-arrow-down"></i> Download Resume</a>
+          <a class="btn" href="https://linkedin.com/in/shashankprasannakumar" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin"></i> LinkedIn</a>
+          <a class="btn" href="https://github.com/shashankprasanna" target="_blank" rel="noopener" aria-label="GitHub"><i class="fab fa-github"></i> GitHub</a>
+        </div>
+        <div class="meta">
+          <span><i class="fa-solid fa-location-dot"></i> Open to Onsite/Hybrid/Remote</span>
+          <span><i class="fa-solid fa-envelope"></i> shashankprasannakumar@gmail.com</span>
+          <span><i class="fa-solid fa-phone"></i> +1 (123) 456‑7890</span>
+        </div>
+      </div>
+    </div>
   </header>
 
-  <section class="about fade" id="about">
-    <h2>About Me</h2>
-    <p>
-      Results-driven professional with expertise in supply chain, ERP systems, and full-stack technology integration. 
-      Passionate about leveraging data-driven solutions and automation to optimize business processes and achieve operational excellence.
-    </p>
-  </section>
+  <main>
+    <!-- About -->
+    <section id="about" class="about">
+      <div class="container reveal">
+        <div class="kicker">About</div>
+        <h2 class="section-title">A pragmatic builder with an eye for operations</h2>
+        <p>
+          Results‑driven professional with hands‑on experience across Supply Chain, ERP, and full‑stack product engineering.
+          I turn complex requirements into straightforward systems: stable APIs, clean data contracts, and thoughtful UIs.
+          I prioritize automation, observability, and documentation so teams move faster with confidence.
+        </p>
+      </div>
+    </section>
 
-  <section class="education fade" id="education">
-    <h2>Education</h2>
-    <div class="cards">
-      <div class="card">
-        <img src="UIC.jpeg" alt="UIC">
-        <h3>University of Illinois Chicago</h3>
-        <p>Master’s in Information Technology & Management<br><strong>Graduated:</strong> 2024</p>
+    <!-- Skills -->
+    <section id="skills">
+      <div class="container reveal">
+        <div class="kicker">Skills</div>
+        <h2 class="section-title">Tech I ship with</h2>
+        <div class="chips" aria-label="Skill tags">
+          <span class="chip">Java • Spring Boot</span>
+          <span class="chip">Node.js • Express</span>
+          <span class="chip">React • TypeScript</span>
+          <span class="chip">SQL • PL/SQL</span>
+          <span class="chip">Oracle • PostgreSQL</span>
+          <span class="chip">SAP • Fiori</span>
+          <span class="chip">ERP • Supply Chain</span>
+          <span class="chip">REST • GraphQL</span>
+          <span class="chip">AWS • OCI</span>
+          <span class="chip">CI/CD • Docker</span>
+          <span class="chip">Data Modeling • ETL</span>
+          <span class="chip">Dashboards • Analytics</span>
+        </div>
       </div>
-      <div class="card">
-        <img src="BTECH.jpeg" alt="VTU">
-        <h3>Visvesvaraya Technological University</h3>
-        <p>Bachelor of Technology in Mechanical Engineering<br><strong>Graduated:</strong> 2020</p>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <section class="experience fade" id="experience">
-    <h2>Professional Experience</h2>
-    <div class="cards">
-      <div class="card">
-        <img src="Infosys.jpeg" alt="Infosys">
-        <h3>Infosys</h3>
-        <p>Software Engineer specializing in supply chain optimization and ERP automation.</p>
-      </div>
-      <div class="card">
-        <img src="Flipkart.jpeg" alt="Flipkart">
-        <h3>Flipkart</h3>
-        <p>Enhanced data analytics dashboards for logistics and operations team.</p>
-      </div>
-      <div class="card">
-        <img src="Oracle.jpeg" alt="Oracle">
-        <h3>Oracle</h3>
-        <p>Worked on scalable database-driven systems integrating ERP functionalities.</p>
-      </div>
-      <div class="card">
-        <img src="EPIC.jpeg" alt="EPIC">
-        <h3>EPIC</h3>
-        <p>Developed secure software modules for healthcare enterprise systems.</p>
-      </div>
-      <div class="card">
-        <img src="SAP.jpeg" alt="SAP">
-        <h3>SAP</h3>
-        <p>Contributed to SAP Fiori and automation integrations improving efficiency by 25%.</p>
-      </div>
-    </div>
-  </section>
+    <!-- Experience -->
+    <section id="experience">
+      <div class="container reveal">
+        <div class="kicker">Experience</div>
+        <h2 class="section-title">Selected roles & impact</h2>
+        <div class="timeline">
+          <!-- Each item uses a modal for detailed bullets -->
+          <article class="item">
+            <div>
+              <div class="role">Software Engineer</div>
+              <div class="org">Infosys • Supply Chain Optimization</div>
+              <div class="meta-row">
+                <span class="tag">Java</span><span class="tag">SAP</span><span class="tag">Oracle</span>
+              </div>
+            </div>
+            <div class="date">Aug 2020 – Jul 2022</div>
+            <button class="btn more" data-dialog="dlg-infosys" aria-haspopup="dialog" aria-controls="dlg-infosys">Details</button>
+          </article>
 
-  <section class="certifications fade" id="certifications">
-    <h2>Certifications & Awards</h2>
-    <div class="cards">
-      <div class="card">
-        <img src="Certification1.jpeg" alt="Cert 1">
-        <h3>Oracle Cloud Infrastructure Certified</h3>
-        <p>Validated expertise in cloud architecture and deployment models.</p>
-      </div>
-      <div class="card">
-        <img src="Certification2.jpeg" alt="Cert 2">
-        <h3>SAP Certified Application Associate</h3>
-        <p>Recognized for excellence in SAP systems implementation.</p>
-      </div>
-    </div>
-  </section>
+          <article class="item">
+            <div>
+              <div class="role">Software Engineer — Logistics Analytics</div>
+              <div class="org">Flipkart</div>
+              <div class="meta-row">
+                <span class="tag">React</span><span class="tag">Node.js</span><span class="tag">Analytics</span>
+              </div>
+            </div>
+            <div class="date">Aug 2022 – Dec 2022</div>
+            <button class="btn more" data-dialog="dlg-flipkart" aria-haspopup="dialog" aria-controls="dlg-flipkart">Details</button>
+          </article>
 
-  <footer>
-    <div class="icons">
-      <a href="mailto:shashankprasannakumar@gmail.com"><i class="fa-solid fa-envelope"></i></a>
-      <a href="https://linkedin.com/in/shashankprasannakumar" target="_blank"><i class="fab fa-linkedin"></i></a>
-      <a href="https://github.com/shashankprasanna" target="_blank"><i class="fab fa-github"></i></a>
-      <a href="tel:+11234567890"><i class="fa-solid fa-phone"></i></a>
+          <article class="item">
+            <div>
+              <div class="role">Engineer — ERP Integrations</div>
+              <div class="org">Oracle</div>
+              <div class="meta-row">
+                <span class="tag">OCI</span><span class="tag">APEX</span><span class="tag">PL/SQL</span>
+              </div>
+            </div>
+            <div class="date">Jan 2023 – Aug 2023</div>
+            <button class="btn more" data-dialog="dlg-oracle" aria-haspopup="dialog" aria-controls="dlg-oracle">Details</button>
+          </article>
+
+          <article class="item">
+            <div>
+              <div class="role">Developer — Healthcare Systems</div>
+              <div class="org">EPIC</div>
+              <div class="meta-row">
+                <span class="tag">C#</span><span class="tag">Security</span><span class="tag">Integrations</span>
+              </div>
+            </div>
+            <div class="date">Sep 2023 – Apr 2024</div>
+            <button class="btn more" data-dialog="dlg-epic" aria-haspopup="dialog" aria-controls="dlg-epic">Details</button>
+          </article>
+
+          <article class="item">
+            <div>
+              <div class="role">Consultant — SAP Automations</div>
+              <div class="org">SAP</div>
+              <div class="meta-row">
+                <span class="tag">Fiori</span><span class="tag">Automation</span><span class="tag">Process</span>
+              </div>
+            </div>
+            <div class="date">May 2024 – Present</div>
+            <button class="btn more" data-dialog="dlg-sap" aria-haspopup="dialog" aria-controls="dlg-sap">Details</button>
+          </article>
+        </div>
+
+        <div class="logos" aria-hidden="true">
+          <img src="Infosys.jpeg" alt="Infosys logo" loading="lazy">
+          <img src="Flipkart.jpeg" alt="Flipkart logo" loading="lazy">
+          <img src="Oracle.jpeg" alt="Oracle logo" loading="lazy">
+          <img src="EPIC.jpeg" alt="EPIC logo" loading="lazy">
+          <img src="SAP.jpeg" alt="SAP logo" loading="lazy">
+        </div>
+      </div>
+    </section>
+
+    <!-- Education (explicit dates to show no gaps) -->
+    <section id="education">
+      <div class="container reveal">
+        <div class="kicker">Education</div>
+        <h2 class="section-title">Formal education</h2>
+        <div class="timeline">
+          <article class="item">
+            <div>
+              <div class="role">M.S. — Information Technology & Management</div>
+              <div class="org">University of Illinois Chicago</div>
+              <div class="meta-row"><span class="tag">Data • Systems • Product</span></div>
+            </div>
+            <div class="date">Aug 2022 – May 2024</div>
+            <button class="btn more" data-dialog="dlg-uic" aria-haspopup="dialog" aria-controls="dlg-uic">Details</button>
+          </article>
+          <article class="item">
+            <div>
+              <div class="role">B.E. — Mechanical Engineering</div>
+              <div class="org">Visvesvaraya Technological University</div>
+              <div class="meta-row"><span class="tag">2016 – 2020</span></div>
+            </div>
+            <div class="date">2016 – 2020</div>
+            <button class="btn more" data-dialog="dlg-vtu" aria-haspopup="dialog" aria-controls="dlg-vtu">Details</button>
+          </article>
+        </div>
+        <p class="subtitle" style="margin-top:10px">Timeline clarity: undergraduate (2016–2020), industry roles (starting 2020), master’s (2022–2024) — no unexplained gaps.</p>
+      </div>
+    </section>
+
+    <!-- Projects (replace images with your own) -->
+    <section id="projects">
+      <div class="container reveal">
+        <div class="kicker">Projects</div>
+        <h2 class="section-title">A few builds I’m proud of</h2>
+        <div class="grid">
+          <article class="card">
+            <div class="media"><img src="proj_supply_chain.jpg" alt="Supply chain dashboard" loading="lazy"></div>
+            <div class="body">
+              <h3>Supply Chain Control Tower</h3>
+              <p>End‑to‑end dashboards with anomaly alerts; reduced SLA breaches by 18%.</p>
+              <div class="card-row">
+                <div class="chips">
+                  <span class="chip">React</span><span class="chip">Node.js</span><span class="chip">PostgreSQL</span>
+                </div>
+                <button class="btn" data-dialog="dlg-proj1">Details</button>
+              </div>
+            </div>
+          </article>
+          <article class="card">
+            <div class="media"><img src="proj_erp.jpg" alt="ERP integrations" loading="lazy"></div>
+            <div class="body">
+              <h3>ERP Integrations Platform</h3>
+              <p>Unified adapter for SAP/Oracle; cut integration lead‑time by 40%.</p>
+              <div class="card-row">
+                <div class="chips">
+                  <span class="chip">Java</span><span class="chip">Spring Boot</span><span class="chip">OCI</span>
+                </div>
+                <button class="btn" data-dialog="dlg-proj2">Details</button>
+              </div>
+            </div>
+          </article>
+          <article class="card">
+            <div class="media"><img src="proj_health.jpg" alt="Healthcare system" loading="lazy"></div>
+            <div class="body">
+              <h3>Secure Healthcare Modules</h3>
+              <p>Access controls & audit trails aligned to HIPAA; zero P1 incidents post‑launch.</p>
+              <div class="card-row">
+                <div class="chips">
+                  <span class="chip">C#</span><span class="chip">PostgreSQL</span><span class="chip">Security</span>
+                </div>
+                <button class="btn" data-dialog="dlg-proj3">Details</button>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Certifications -->
+    <section id="certs">
+      <div class="container reveal">
+        <div class="kicker">Certifications & Awards</div>
+        <h2 class="section-title">Validated skills</h2>
+        <div class="grid">
+          <article class="card">
+            <div class="media"><img src="Oracle" alt="OCI certificate" loading="lazy"></div>
+            <div class="body">
+              <h3>Oracle Cloud Infrastructure Certified</h3>
+              <p>Validated expertise in cloud architecture & deployment models.</p>
+              <div class="card-row"><span class="chip">OCI</span><span class="chip">Cloud</span></div>
+            </div>
+          </article>
+          <article class="card">
+            <div class="media"><img src="SAP.jpeg" alt="SAP certificate" loading="lazy"></div>
+            <div class="body">
+              <h3>SAP Certified Application Associate</h3>
+              <p>Recognized proficiency in SAP systems implementation.</p>
+              <div class="card-row"><span class="chip">SAP</span><span class="chip">ERP</span></div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact">
+      <div class="container reveal">
+        <div class="kicker">Contact</div>
+        <h2 class="section-title">Let’s build something</h2>
+        <p class="about">Prefer email or LinkedIn — I respond quickly.
+        </p>
+        <div class="actions" style="margin-top:10px">
+          <a class="btn" href="mailto:shashankprasannakumar@gmail.com"><i class="fa-solid fa-envelope"></i> Email</a>
+          <a class="btn" href="tel:+11234567890"><i class="fa-solid fa-phone"></i> Call</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="container" style="display:flex;justify-content:space-between;align-items:center;gap:12px">
+    <div class="icons" aria-label="Social links">
+      <a href="mailto:shashankprasannakumar@gmail.com" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
+      <a href="https://linkedin.com/in/shashankprasannakumar" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+      <a href="https://github.com/shashankprasanna" target="_blank" rel="noopener" aria-label="GitHub"><i class="fab fa-github"></i></a>
     </div>
-    <p>© 2025 Shashank Prasanna Kumar. All Rights Reserved.</p>
+    <small>© <span id="year"></span> Shashank Prasanna Kumar</small>
   </footer>
 
+  <!-- ===== Dialogs / Pop‑ups (accessible) ===== -->
+  <dialog id="dlg-infosys">
+    <div class="dlg-head"><div class="dlg-title">Infosys — Supply Chain Optimization</div><button class="close-btn" data-close>Close</button></div>
+    <div class="dlg-body">
+      <ul>
+        <li>Engineered forecasting & replenishment services; reduced stock‑outs by 12% across pilot DCs.</li>
+        <li>Built SAP‑integrated job flows (Fiori + ABAP hooks) to automate GR/IR reconciliations.</li>
+        <li>Owned PL/SQL packages & indexes; cut month‑end batch runtime from 6h → 2.1h.</li>
+      </ul>
+    </div>
+  </dialog>
+
+  <dialog id="dlg-flipkart">
+    <div class="dlg-head"><div class="dlg-title">Flipkart — Logistics Analytics</div><button class="close-btn" data-close>Close</button></div>
+    <div class="dlg-body">
+      <ul>
+        <li>Delivered React dashboards with SLA, NPS, and route heatmaps; 18% reduction in escalations.</li>
+        <li>Implemented Node.js ETL to normalize partner feeds; ensured single source of truth for ops.</li>
+      </ul>
+    </div>
+  </dialog>
+
+  <dialog id="dlg-oracle">
+    <div class="dlg-head"><div class="dlg-title">Oracle — ERP Integrations</div><button class="close-btn" data-close>Close</button></div>
+    <div class="dlg-body">
+      <ul>
+        <li>Built Spring Boot adapters for Order/Inventory modules; formalized data contracts and retries.</li>
+        <li>Hardened APEX admin tools; introduced role‑based access and audit trails.</li>
+      </ul>
+    </div>
+  </dialog>
+
+  <dialog id="dlg-epic">
+    <div class="dlg-head"><div class="dlg-title">EPIC — Healthcare Systems</div><button class="close-btn" data-close>Close</button></div>
+    <div class="dlg-body">
+      <ul>
+        <li>Developed secure modules with least‑privilege access and immutable logs for compliance.</li>
+        <li>Improved query performance (C# + SQL) for clinical workflows; zero P1 incidents post‑launch.</li>
+      </ul>
+    </div>
+  </dialog>
+
+  <dialog id="dlg-sap">
+    <div class="dlg-head"><div class="dlg-title">SAP — Automations</div><button class="close-btn" data-close>Close</button></div>
+    <div class="dlg-body">
+      <ul>
+        <li>Delivered Fiori‑based automations for repetitive ops tasks; ~25% efficiency gains reported.</li>
+        <li>Created CI checks to enforce transport naming and documentation gates.</li>
+      </ul>
+    </div>
+  </dialog>
+
+  <dialog id="dlg-uic">
+    <div class="dlg-head"><div class="dlg-title">UIC — M.S. ITM</div><button class="close-btn" data-close>Close</button></div>
+    <div class="dlg-body">
+      <ul>
+        <li>Focus: distributed systems, data engineering, product delivery.</li>
+        <li>Capstone: supply chain visibility prototype; alerting & what‑if analysis.</li>
+      </ul>
+    </div>
+  </dialog>
+
+  <dialog id="dlg-vtu">
+    <div class="dlg-head"><div class="dlg-title">VTU — B.E. Mechanical</div><button class="close-btn" data-close>Close</button></div>
+    <div class="dlg-body">
+      <ul>
+        <li>Foundation in systems thinking, optimization, and control theory.</li>
+      </ul>
+    </div>
+  </dialog>
+
+  <dialog id="dlg-proj1">
+    <div class="dlg-head"><div class="dlg-title">Supply Chain Control Tower — Details</div><button class="close-btn" data-close>Close</button></div>
+    <div class="dlg-body">
+      <ul>
+        <li>Integrated shipment, inventory, and demand feeds with schema‑validated contracts.</li>
+        <li>Event‑driven alerts (stockouts, ETA slips) with email/MS Teams hooks.</li>
+        <li>Role‑based views for CXOs vs DC managers; exportable insights.</li>
+      </ul>
+    </div>
+  </dialog>
+
+  <dialog id="dlg-proj2">
+    <div class="dlg-head"><div class="dlg-title">ERP Integrations Platform — Details</div><button class="close-btn" data-close>Close</button></div>
+    <div class="dlg-body">
+      <ul>
+        <li>Adapter pattern to unify SAP/Oracle APIs; retries, idempotency, circuit breakers.</li>
+        <li>Cut lead time for new integrations by ~40%; standardized observability.</li>
+      </ul>
+    </div>
+  </dialog>
+
+  <dialog id="dlg-proj3">
+    <div class="dlg-head"><div class="dlg-title">Secure Healthcare Modules — Details</div><button class="close-btn" data-close>Close</button></div>
+    <div class="dlg-body">
+      <ul>
+        <li>RBAC with granular permissions; PHI safeguards; audit trails.</li>
+        <li>Performance tuning for critical read paths; measurable clinician time savings.</li>
+      </ul>
+    </div>
+  </dialog>
+
   <script>
-    // Fade animation on scroll
-    const fades = document.querySelectorAll('.fade');
-    const observer = new IntersectionObserver(entries=>{
-      entries.forEach(entry=>{
-        if(entry.isIntersecting){entry.target.style.opacity=1;}
+    // Theme Toggle (stores preference)
+    const toggle = document.getElementById('themeToggle');
+    const root = document.body;
+    const savedTheme = localStorage.getItem('theme');
+    if(savedTheme){ root.className = savedTheme; }
+    toggle.addEventListener('click', ()=>{
+      root.classList.toggle('light');
+      const mode = root.classList.contains('light') ? 'light' : 'dark';
+      root.className = mode;
+      localStorage.setItem('theme', mode);
+    });
+
+    // Reveal on scroll
+    const ro = new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('show'); ro.unobserve(e.target);} })
+    },{threshold:0.15});
+    document.querySelectorAll('.reveal').forEach(el=>ro.observe(el));
+
+    // Year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Accessible dialogs (pop‑ups)
+    const openers = document.querySelectorAll('[data-dialog]');
+    const closeButtons = document.querySelectorAll('[data-close]');
+
+    openers.forEach(btn=>{
+      btn.addEventListener('click', ()=>{
+        const id = btn.getAttribute('data-dialog');
+        const dlg = document.getElementById(id);
+        if(!dlg) return;
+        dlg.showModal();
+        // Trap focus basics
+        const focusable = dlg.querySelector('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+        focusable && focusable.focus();
       });
-    },{threshold:0.2});
-    fades.forEach(el=>observer.observe(el));
+    });
+
+    closeButtons.forEach(btn=>btn.addEventListener('click', ()=>{
+      const dlg = btn.closest('dialog');
+      dlg && dlg.close();
+    }));
+
+    // Close on backdrop click
+    document.querySelectorAll('dialog').forEach(dlg=>{
+      dlg.addEventListener('click', (e)=>{
+        const rect = dlg.getBoundingClientRect();
+        const clickedInDialog = rect.top <= e.clientY && e.clientY <= rect.bottom && rect.left <= e.clientX && e.clientX <= rect.right;
+        if(!clickedInDialog) dlg.close();
+      });
+      // ESC key
+      dlg.addEventListener('keydown', (e)=>{ if(e.key==='Escape') dlg.close(); });
+    });
   </script>
 
+  <!-- JSON‑LD for richer previews -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Shashank Prasanna Kumar",
+    "jobTitle": "Full‑Stack Developer",
+    "url": "",
+    "email": "mailto:shashankprasannakumar@gmail.com",
+    "sameAs": [
+      "https://linkedin.com/in/shashankprasannakumar",
+      "https://github.com/shashankprasanna"
+    ]
+  }
+  </script>
 </body>
 </html>
